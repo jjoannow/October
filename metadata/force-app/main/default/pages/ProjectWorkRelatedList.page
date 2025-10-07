@@ -1,0 +1,20 @@
+<apex:page standardController="agf__PPM_Project__c" extensions="ProjectWorkRelatedListController" title="Project Work Records" lightningStyleSheets="TRUE">
+    <!---<apex:relatedList list="{WorkRecords}"/>--->
+    
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageblockButtons location="top">
+            	<apex:commandButton value="New Work Record" onclick="window.open('{!NewWorkRecordURL}')"/>
+            </apex:pageblockButtons>            
+            <apex:pageBlockTable value="{!WorkRecords}" var="wr">
+                <apex:column headerValue="Name">
+                   <apex:outputLink value="/{!wr.id}" target="_blank">
+                       {!wr.Name}
+                   </apex:outputLink>                
+                </apex:column>
+                <apex:column value="{!wr.agf__Subject__c}"/>
+                <apex:column value="{!wr.agf__Status__c}"/>                                
+            </apex:pageBlockTable>    
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

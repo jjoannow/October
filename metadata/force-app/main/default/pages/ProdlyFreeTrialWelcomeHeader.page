@@ -1,0 +1,15 @@
+<apex:page controller="ProdlySDOSetupClass" showHeader="FALSE" sidebar="FALSE" Id="ProdlyFreeWelcomeHeader" lightningStylesheets="TRUE">
+    <style type="text/css">   
+		body { background-image: url("{!$Resource.ProdlyHeaderBanner1}") !important; }
+    </style>
+    
+    <apex:form >
+        <apex:outputText rendered="{!If(isSandbox = true, false, true)}">
+            <font size="5" color="#FFFFFF">Welcome to the Prodly Free Trial!</font><br/>
+            <font color="#ff5248">Before you go any further, please watch the Environment Finalization Walkthrough Video below.</font><br/>
+            <font color="#ff5248">It serves as visual guide to the environment finalization steps accessible on the right.</font><br/>        
+            <!---<font color="#ff5248"><b>Access to Prodly will expire 14 days from the date you first logged in.</b></font><br/>--->
+            <font color="#ff5248"><b>NOTE: This environment expires 30 days after the initial Free Trial Form submission and access to Prodly expires 14 days from the date you first logged in.</b></font><br/>
+        </apex:outputText>
+    </apex:form>
+</apex:page>

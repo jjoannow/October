@@ -1,0 +1,5 @@
+<apex:page standardController="agf__ADM_Epic__c">
+    <apex:form >
+        Hello World
+    </apex:form>
+</apex:page>

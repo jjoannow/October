@@ -1,0 +1,50 @@
+<apex:page showHeader="TRUE" sidebar="true" LightningStylesheets="TRUE" controller="getFreeTrialUseGuideCDId">
+    <style type="text/css">   
+		body { background-image: url("{!$Resource.ProdlyLeftColumnBackground1}") !important; }
+        table, td, th {
+              border: 0px solid black;
+            }
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }            
+            td {
+              text-align: center;
+            }            
+            tr {
+              text-align: center;
+            }    
+  
+    </style>
+ 
+    
+    <apex:form rendered="{!If(isSandbox = true, false, true)}">
+        <apex:pageBlock >
+            If the content doesn't render below, the Prodly Free Trial Environment Finalization Walkthrough Video can be viewed <u><apex:outputLink onclick="window.open('https://www.youtube.com/watch?v=i1zztk1o_qM');" ><font color="#001dff">here.</font></apex:outputLink></u>            
+        </apex:pageBlock>       
+    	<table>
+        	<tr>
+                <td><iframe src="https://drive.google.com/file/d/1XClpDpRNMr7bKC9u24otEk2qYN_Dj-BT/preview" width="90%" height="260" allow="autoplay" alignment="center"></iframe></td> 
+				<!---<td><iframe src="https://youtu.be/KDGHACWYR8w" width="90%" height="260" allow="autoplay" alignment="center"></iframe></td>--->                          
+			</tr>  
+        </table> <br/>
+        <!---<apex:pageBlock >
+            If the content doesn't render below (usually Google Chrome), the Environment Setup steps video can be viewed <u><apex:outputLink onclick="window.open('https://youtu.be/-8WkC63td0s');" ><font color="#001dff">here.</font></apex:outputLink></u>            
+        </apex:pageBlock>             
+    	<table>
+        	<tr>
+                <td><iframe src="https://drive.google.com/file/d/1s4oDYyKGAhzFLLW4S0JoQo46m9EvZK3y/preview" width="90%" height="260" allow="autoplay" alignment="center"></iframe></td> 
+			</tr>  
+        </table>
+		--->
+        <!---
+        <apex:pageBlock rendered="{!If(isSandbox = true, true, false)}">
+            Acesss to the Prodly Free Trial Usage Guide is available in your Prodly Free Trial Production Environment only.
+        </apex:pageBlock>
+        --->
+    </apex:form>
+    
+    <apex:pageBlock Id="SandboxPageBlock" title="Content Only Available In Production Environment" rendered="{!If(isSandbox = true, true, false)}">
+    </apex:pageBlock>   
+    
+</apex:page>

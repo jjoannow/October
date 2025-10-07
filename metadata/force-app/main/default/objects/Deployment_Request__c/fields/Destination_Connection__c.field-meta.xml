@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Destination_Connection__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <label>Destination Connection</label>
+    <referenceTo>PDRI__Connection__c</referenceTo>
+    <relationshipLabel>Deployment Requests (Destination Connection)</relationshipLabel>
+    <relationshipName>Deployment_Requests1</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

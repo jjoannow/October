@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dynamic_Date_Mover_Outer__c</fullName>
+    <formula>IF(CloseDate &lt; (TODAY()-90), TODAY()+60, 
+IF(CloseDate &lt; (TODAY()-45), TODAY()+30, 
+IF(CloseDate &lt; TODAY(), TODAY(), 
+IF(CloseDate &gt;= TODAY(), CloseDate, 
+CloseDate))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Dynamic Date Mover Outer</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

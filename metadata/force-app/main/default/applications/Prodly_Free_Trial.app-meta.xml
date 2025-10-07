@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>Free_Trial_Welcome_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>Prodly_DevOps_1</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>Prodly DevOps Free Trial</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Prodly Free Trial</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>Prodly_Free_Trial_Usage_Guide_VF</tabs>
+    <tabs>PDRI__AppOpsRelease</tabs>
+    <tabs>PDRI__AppOpsPlan</tabs>
+    <tabs>PDRI__AppOpsTest</tabs>
+    <tabs>PDRI__AppOpsMonitor</tabs>
+    <tabs>PDRI__Data_Sets_Home</tabs>
+    <tabs>PDRI__Deployment_Plan__c</tabs>
+    <tabs>PDRI__ComparisonView__c</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Product2</tabs>
+    <tabs>SBQQ__PriceRule__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Prodly_Free_Trial_UtilityBar</utilityBar>
+</CustomApplication>

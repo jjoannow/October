@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ccrz__CC_CurrencyCode__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Customized Currency field for Orgs which don&apos;t have  Multi-currency feautre.</description>
+    <externalId>false</externalId>
+    <label>Currency</label>
+    <length>30</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

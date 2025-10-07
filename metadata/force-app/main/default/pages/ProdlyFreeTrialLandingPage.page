@@ -1,0 +1,165 @@
+<apex:page controller="ProdlySDOSetupClass" action="{!updateFirstLoginDate}" Id="ProdlyFreeTrialLandingPage" lightningStylesheets="TRUE">
+    <style type="text/css">   
+		body { background-image: url("{!$Resource.ProdlyRightColumnBackground1}") !important; }
+    </style>    
+    
+    <apex:form Id="ProdlySDOSetupForm">
+        <!---<apex:pageMessage severity="Confirm" title="Email Address Update Complete" rendered="{!If(updatedTruePageParameter == 'TRUE', false, true)}"/>  --->     
+        <apex:pageMessage severity="Warning" title="You Must Provide A Valid Email Address" rendered="{!If(updatedTruePageParameter == 'FALSE', true, false)}"  />       
+              
+        <!---
+        <apex:outputText rendered="{!If(isSandbox = true, false, true)}">
+            <font size="3" color="#ff5248">Welcome to the Prodly Free Trial.</font><br/>
+            <font color="#ff5248">Before you begin using the system, please follow the steps below to prepare your environment.</font><br/>
+            <font color="#ff5248">Your trial will expire 14 days from the date you first logged in.</font><br/><br/>
+        </apex:outputText>
+        --->
+        
+        <apex:pageBlock Id="SandboxPageBlock" title="Setup Steps Are Not Required In Sandbox Environments" rendered="{!If(isSandbox = true, true, false)}">
+        </apex:pageBlock> 
+        
+        <apex:pageBlock Id="PageBlock1" title="{!If(updatedTruePageParameter = 'TRUE', 'Email Updates Complete', 'Step 1 - Update Email Addresses')}" rendered="{!If(isSandbox = true, false, true)}">
+            <apex:outputText rendered="{!If(updatedTruePageParameter == 'TRUE', true, false)}">
+                Don't forget to verify the change to your User email address to complete the process.
+            </apex:outputText>
+            <apex:outputText rendered="{!If(updatedTruePageParameter != 'TRUE', true, false)}">
+                Enter the preferred Email address for <b>Users</b>, <b>Leads</b> and <b>Contacts</b>. <br/>
+            </apex:outputText>                        
+            <apex:outputText rendered="{!If(updatedTruePageParameter != 'TRUE', true, false)}">
+                Confirmation of Email change is required for <b>User</b> records! <u>Make sure the email address used is valid and accessible.</u><br/>
+                <font color="#ff5248">If you see this message and/or the field below, the process did not complete and you will need to try again!</font> 
+            </apex:outputText>   
+                      
+            <apex:inputTextarea value="{!emailAddressFromUser}" cols="75" rendered="{!If(updatedTruePageParameter != 'TRUE', true, false)}"/>
+            <i><apex:outputText value="If an '@gmail.com' address is used, the + aliasing will be applied for Contact emails (e.g test+1@gmail.com, test+2@gmail.com)." rendered="{!If(updatedTruePageParameter != 'TRUE', true, false)}"/></i><br/><br/>           
+            <apex:commandButton title="Update Emails" value="Update Emails" alt="Click here to update the Email addresses"  action="{!updateEmails}" rendered="{!If(updatedTruePageParameter != 'TRUE', true, false)}"/>            
+        </apex:pageBlock>  
+        
+        <apex:pageBlock Id="PageBlock2" title="Step 2 - Dev Hub Settings" rendered="{!If(isSandbox = true, false, true)}">
+             <apex:outputText >
+                 <font>Enabling certain features for new developing environments is Salesforce's preferred route moving forward. Enter Dev Hub: </font><br/>
+                  - Use the link below to navigate to the Dev Hub page in Salesforce Setup.<br/>                  
+                  - Enable the <b>Enable Dev Hub</b> setting by sliding the slider to the right.<br/>
+                  <!--- - Verify the <b>Enable Source Tracking in Developer and Developer Pro Sandboxes</b> is enabled (enable, if necesary).<br/> --->
+                  - Scroll down and enable the <b>Sandbox Expiration Email Opt Out</b> setting by sliding the slider to the right.<br/>
+            </apex:outputText>
+            <u><apex:outputLink onclick="window.open('/lightning/setup/DevHub/home');"><font color="#001dff">Click here to access the Dev Hub page in Salesforce Setup</font></apex:outputLink></u><br/>                                       
+        </apex:pageBlock>              
+        
+        <apex:pageBlock Id="PageBlock3" title="Step 3 - Create Sandboxes" rendered="{!If(isSandbox = true, false, true)}">
+             <apex:outputText >
+                 <font>Sandboxes are the typical developing environments and they should be utilzied during your trial. A Sandbox Template is required before creating a <b>Partial Sandbox.</b></font><br/>
+                  - Use the link below to navigate to the Sandboxes page in Salesforce Setup.<br/>
+                  - Click on the Sandbox Templates Tab and click the <b>New Sandbox Template</b> button.<br/>
+                  - Name the Sandbox Template "All" and select <i>all available objects.</i> Click the <b>Save</b> button.<br/>
+                  - Create at least two Developer Sandboxes, providing Sandbox Access to <i>Release Managers</i>.<br/>
+                  - Create the one available Partial Sandbox using the "All" Sandbox Template, providing Sandbox Access to <i>SF Admins</i>.<br/>                                                                                
+            </apex:outputText>                
+            <u><apex:outputLink onclick="window.open('/lightning/setup/DataManagementCreateTestInstance/home');"><font color="#001dff">Click here to access the Sandboxes page in Salesforce Setup</font></apex:outputLink></u>
+        </apex:pageBlock> 
+        
+        <apex:pageBlock Id="PageBlock4" title="Step 4 - Scratch Org Settings" rendered="{!If(isSandbox = true, false, true)}">                                     
+            <apex:outputText >
+                <font>Scratch Orgs are a great alternative to Sandbox environments, but must be enabled before use.</font><br/>
+                  - Use the link below to navigate to the Scratch Orgs page in Salesforce Setup.<br/>
+                  - Enable the <b>Enable Org Shape for Scratch Orgs</b> setting by sliding the slider to the right.<br/>
+                  - Paste the 15-character Org Id (shown below) of your Prodly Free Trial Production environment into the <b>Allow a Dev Hub org to create scratch orgs using this org’s shape.</b> large text field.<br/>
+                     <font color="red">- YOUR 15-CHARACTER ORG ID: <b>{!ThisOrgId}</b></font><br/>
+                  - Enable the <b>Enable Scratch Org Snapshots</b> setting by sliding the slider to the right.<br/>
+                  - Click the <b>Save</b> button to complete the process.<br/>                                                                   
+            </apex:outputText>                         
+            <u><apex:outputLink onclick="window.open('/lightning/setup/ShapeGrantAccess/home');"><font color="#001dff">Click here to access the Scratch Orgs page in Salesforce Setup</font></apex:outputLink></u>
+        </apex:pageBlock>                      
+        
+        <apex:pageBlock Id="PageBlock5" title="Your Trial Experience Starts Now!" rendered="{!If(isSandbox = true, false, true)}">
+            <apex:outputText value="This environment is staged with data and use cases based on real world scenarios and is yours to explore."/><br/>
+            <apex:outputText value="To get the full scope of how Prodly can support your Salesforce DevOps efforts, we recommend you explore the list of solutions below."/><br/>
+            The <u><apex:outputLink onclick="window.open('/lightning/n/Prodly_Free_Trial_Usage_Guide_VF');" ><font color="#001dff">Prodly Free Trial Usage Guide Tab</font></apex:outputLink></u> contains instructions to test out Prodly functionality.<br/>            
+            <apex:outputText >
+                <ul>
+                  <li>Environment Management</li>
+                  <li>{!mdTextString}</li>
+                  <li>{!cpqReleaseString}</li>
+                  <li>Compliance Reporting</li>
+                  <li>Work Management System Integration</li>                  
+                  <li>Source-control System Integration</li>
+                  <li>CPQ Regression Testing</li>                                              
+                </ul>        
+            </apex:outputText> 
+            <!---<u><apex:outputLink onclick="window.open('/lightning/setup/SecuritySession/home');" ><font color="#001dff">Click here to access the Session Settings page in Salesforce Setup</font></apex:outputLink></u>--->
+        </apex:pageBlock>             
+       
+<!--- Below is from Prodly HOT Setup Page. Shown here for reference only --->   
+    
+    <!---       
+        <apex:pageBlock Id="PageBlock2" title="Update Salesforce Password Policies">
+            <apex:outputText value="The default Salesforce Password Policies are enabled upon environment creation. It is recommended to update these settings so your password does not expire."/><br/>
+            <u><apex:outputLink onclick="window.open('/lightning/setup/SecurityPolicies/home');"><font color="#001dff">Click here to access the Password Policies page in Salesforce Setup</font></apex:outputLink></u>         
+            <br/>
+            <apex:outputText >
+                  - Set the <b>User passwords expire in</b> option to <i><b>Never expires</b></i>.
+            </apex:outputText><br/>
+            <apex:outputText >
+                  - Set the <b>Enforce password history</b> option to <i><b>No passwords remembered</b></i>.
+            </apex:outputText><br/>            
+        </apex:pageBlock>                                       
+    
+        <apex:pageBlock Id="PageBlock5" title="Navigate to the Prodly Lessons Tab">
+            <apex:outputText >
+                <font>After completing the above, navigate to the Prodly Lessons Tab.</font><br/>
+                <font color="#ff5248">  - Change the List View to <b>All</b> and pin the List View!</font><br/> 
+                  - Mark Lesson 0 as complete using the Lesson Complete checkbox.<br/>  
+                  - Open Lesson 1 to begin your Prodly Training experience (Each Lesson's guide is available via the Enablement Guide Link URL).<br/>                                   
+            </apex:outputText> 
+            <u><apex:outputLink onclick="window.open('/lightning/o/Prodly_Enablement_Tracker__c/home');"><font color="#001dff">Click here to access the Prodly Lessons Tab.</font></apex:outputLink></u><br/><br/>
+            <font color="#ff5248" size="3"><b><i>There is no need to return to Lesson 0 (this page) moving forward!</i></b></font>
+        </apex:pageBlock>           
+        
+    
+        <apex:pageBlock Id="PageBlock1a" title="Step 2 - Request Prodly Access">
+            <apex:outputText value="Click the link below to access the Prodly Account Tab. When there: "/><br/>
+            <apex:outputText value="  1) Double-check your personal information." /><br/> 
+            <apex:outputText value="  2) Select both the AppOps Release and AppOps Test options. " /><br/>             
+            <apex:outputText value="  3) Click the Submit button. "/><i>Access is typically granted within 1 business day.</i><br/>
+            <u><apex:outputLink onclick="window.open('/lightning/n/PDRI__Prodly_Account');"><font color="#001dff">Click here to access the Prodly Account Tab.</font></apex:outputLink></u>
+        </apex:pageBlock>     
+
+        <apex:pageBlock Id="PageBlock2" title="Step 2 - Install Prodly AppOps Release Managed Package">
+            <apex:outputText value="Follow the link below to install Prodly AppOps utilzing the Salesforce AppExchange: "/><br/>
+            <u><apex:outputLink onclick="window.open('https://appexchange.salesforce.com/appxListingDetail?listingId=a0Nbn00000hdHJaEAQ');"><font color="#001dff">Prodly AppOps Release AppExchange Listing</font></apex:outputLink></u>
+            <!---<apex:iframe src="{!JSENCODE('/07E')}" scrolling="true" id="sandboxes"/>            
+        </apex:pageBlock>      
+  
+                       
+        <apex:pageBlock Id="PageBlock2" title="Step 2 - Authorize the New Salesforce CPQ Pricing and Calculation Service">        
+            <apex:outputText value="Click the link below to navigate to Installed Packages in Salesforce Setup. When there: "/><br/>
+            <apex:outputText value="  1) Click on Configure next to the 'Salesforce CPQ' Package."/><br/>
+            <apex:outputText value="  2) Click on the 'Pricing and Calulation' Tab."/><br/>
+            <apex:outputText value="  3) Click on the 'Authorize new calculation service' link. You may be asked to log in to this environment; do so, if prompted. "/><br/>                        
+            <apex:outputText value="  4) Click Allow to complete the process. "/><br/>                                    
+            <u><apex:outputLink onclick="window.open('/lightning/setup/ImportedPackage/home');"><font color="#001dff">Click here to access the Installed Packages page in Salesforce Setup</font></apex:outputLink></u>
+        </apex:pageBlock>    
+    --->             
+    
+    <!---
+        <apex:pageBlock Id="PageBlock3" title="Step 3 - Install the 'Metadata Diffs' Package">                   
+            <i><apex:outputText value="This step can only be completed after the Sandboxes are created and activated. "/></i><br/>
+            Use the link below to initiate the install process and be routed to the Salesforce Sandbox login screen. Any Sandbox can be utilized, but it is recommended to use your <b>Partial</b> Sandbox.<br/>
+            <u><apex:outputLink onclick="window.open('https://test.salesforce.com/packaging/installPackage.apexp?p0=04tbn000000pS3t');"><font color="#001dff">Prodly Metadata Diffs Package Sandbox Installer</font></apex:outputLink></u>            
+        </apex:pageBlock>    
+    --->
+    
+    <!---
+        <apex:pageBlock Id="PageBlock4" title="Step 4 - Hide the Prodly Training Environment Setup Tab">        
+            <apex:outputText value="Once all of the above items are complete, you can safely remove this Tab from the Prodly Training App. Click the link below to navigate to App Manager settings in Salesforce Setup. When there: "/><br/>
+            <apex:outputText value="  1) Click on the dropdown arrow on the Prodly Training App and choose Edit."/><br/>
+            <apex:outputText value="  2) Under App Settings, select the Navigation Items."/><br/>
+            <apex:outputText value="  3) Click on the Prodly Training Environment Setup entry in Selected Items."/><br/>                        
+            <apex:outputText value="  4) Click the left directional arrow to remove this entry. "/><br/>   
+            <apex:outputText value="  5) Click the Save button to complete the process. "/><br/>                                              
+            <u><apex:outputLink onclick="window.open('/lightning/setup/NavigationMenus/home');"><font color="#001dff">Click here to access the App Manager page in Salesforce Setup</font></apex:outputLink></u>
+        </apex:pageBlock>
+    --->    
+    
+    </apex:form>
+</apex:page>

@@ -1,0 +1,24 @@
+<apex:page controller="ProdlySFCPQDataCreatorController" lightningStylesheets="TRUE" showHeader="TRUE" Sidebar="FALSE">
+    <apex:form >  
+        <apex:pageMessage severity="Success" title="Data Created Succesfully. You may now close this tab." rendered="{!If(updatedTruePageParameter == "TRUE", true, false)}"  />       
+
+        <apex:pageBlock Id="SandboxPageBlock" rendered="{!IF(IsSandbox == TRUE, true, false)}">
+            <apex:outputText value="Press the button below to create new Salesforce CPQ Configuration Data to use as an example of tactical CPQ Configuration Promotion." rendered="{!If(updatedTruePageParameter == "TRUE", false, true)}"/><br/>
+            <apex:commandButton title="Create Salesforce CPQ Data" value="Create Data" alt="Click here to create CPQ data"  action="{!createNewRecords}" rendered="{!If(updatedTruePageParameter == "TRUE", false, true)}"/>                        
+          <!--- After adding the data --->
+            <apex:outputText value="The Data Creation process is complete. You will no longer need to access this page." rendered="{!If(updatedTruePageParameter == "TRUE", true, false)}" /><br/>
+            <apex:outputText value="Please continue with your Free Trial by referring to the Prodly Free Trial Usage Guide in your Production instance." rendered="{!If(updatedTruePageParameter == "TRUE", true, false)}" /><br/>
+            <u><apex:outputText value="New Record List: " rendered="{!If(updatedTruePageParameter == "TRUE", true, false)}" /><br/></u>
+            <apex:outputText value="  New Product Record with Name 'End User Training'." rendered="{!If(updatedTruePageParameter == "TRUE", true, false)}" /><br/>
+            <apex:outputText value="  4 New Product Options related to the above." rendered="{!If(updatedTruePageParameter == "TRUE", true, false)}" /><br/>
+            <apex:outputText value="  New Price Rule (with Condition [1] and Actions [2]) with Name 'Dev SB Price Rule'." rendered="{!If(updatedTruePageParameter == "TRUE", true, false)}" />
+
+        </apex:pageBlock>
+        
+        <apex:pageBlock Id="NonSBPagePlock" rendered="{!IF(IsSandbox == TRUE, false, true)}">
+            <apex:outputText value="This functionality is only available in a Sandbox environment." /><br/>
+            <apex:outputText value="Please refer to the Prodly Free Trial Usage Guide in your Production instance for more information." />
+        </apex:pageBlock>
+
+    </apex:form>
+</apex:page>

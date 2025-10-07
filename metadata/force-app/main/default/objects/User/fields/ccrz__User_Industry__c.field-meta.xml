@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ccrz__User_Industry__c</fullName>
+    <deprecated>false</deprecated>
+    <description>CloudCraze user industry</description>
+    <label>User Industry</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Academic research</fullName>
+                <default>true</default>
+                <label>Academic research</label>
+            </value>
+            <value>
+                <fullName>commercial</fullName>
+                <default>false</default>
+                <label>commercial</label>
+            </value>
+            <value>
+                <fullName>government</fullName>
+                <default>false</default>
+                <label>government</label>
+            </value>
+            <value>
+                <fullName>OEM-Reseller</fullName>
+                <default>false</default>
+                <label>OEM-Reseller</label>
+            </value>
+            <value>
+                <fullName>other</fullName>
+                <default>false</default>
+                <label>other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
